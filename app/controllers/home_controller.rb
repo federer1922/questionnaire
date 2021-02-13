@@ -1,4 +1,4 @@
 class HomeController < ApplicationController
-  def home
+  def run_questionnaire
   end
 end

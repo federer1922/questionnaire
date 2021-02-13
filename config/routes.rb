@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 
   get '/create', to: 'questionnaires#create'
 
+  get '/add_page_to_questionnaire', to: 'questionnaires#add_page_to_questionnaire'
+
 end
