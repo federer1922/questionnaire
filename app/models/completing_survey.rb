@@ -1,4 +1,4 @@
-class Completing_survey < ApplicationRecord
+class CompletingSurvey < ApplicationRecord
     
   has_many :answers
   belongs_to :questionnaire  
