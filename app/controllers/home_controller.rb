@@ -1,12 +1,14 @@
 class HomeController < ApplicationController
   def run_questionnaire
 
-    
     if params["questionnaire_id"]
       questionnaire = Questionnaire.find params["questionnaire_id"]
       completing_survey = CompletingSurvey.new
       completing_survey.questionnaire = questionnaire
       completing_survey.save!
+
+      @pages = questionnaire.pages.to_a
+      render "questionnaire"
     elsif params["completing_survey_id"]
       completing_survey = CompletingSurvey.find params["completing_survey_id"]
 
@@ -24,7 +26,7 @@ class HomeController < ApplicationController
           answer.question = question
           answer.date_selection = given_answer
           answer.save!
-        else question.kind == "single_choice"
+        elsif question.kind == "single_choice"
           answer = Answer.new
           answer.completing_survey = completing_survey
           answer.question = question
@@ -32,7 +34,20 @@ class HomeController < ApplicationController
           answer.save!
         end
       end
+      render "thank_you"
+    
+    else
+      questionnaire = Questionnaire.first
+      completing_survey = CompletingSurvey.new
+      completing_survey.questionnaire = questionnaire
+      completing_survey.save!
+
+      @pages = questionnaire.pages.to_a
+      render "questionnaire" 
     end
+
+
+  
 
 
 

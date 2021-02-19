@@ -1,0 +1,25 @@
+<div class="container">
+  <%  @pages.each do |page| %>
+    <% page.questions.each do |question| %>
+      <div class="row">
+        <div class="col-md-auto">
+        <p></p>
+          <%= question.content %>
+        </div>
+        <div class="col-md-auto">
+        <p></p>
+        page <%= page.number %>
+        </div>
+        <div class="w-100"></div>
+        <div class="col-md">
+          <form action="/run_questionnaire" >
+            <label for="answers"> </label><br>
+            <input type="text" class="form-control" name="answers" placeholder="Type your answer">
+            <button type="submit" class="btn btn-info">Submit</button>
+          </form>
+        </div>   
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

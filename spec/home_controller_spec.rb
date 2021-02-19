@@ -27,7 +27,7 @@ describe HomeController, type: :controller do
     expect(completing_survey.questionnaire).to eq questionnaire_1
     #post :run_questionnaire, params: { questionnaire_id: questionnaire_1.id, question_1_id: question_1.id, answer_first: "Arek, twice a week", question_2_id: question_2.id, answer_second: "#{Date.today}", question_3_id: question_3.id, answer_third: "hybrid" , question_4_id: question_4.id, answer_fourth: "The freedom, fun and fitness aspects", question_5_id: question_5.id, answer_fifth: "#{Date.yesterday}", question_6_id: question_6.id, answer_sixth: "more than 20 miles" }
     
-    post :run_questionnaire, params: { completing_survey_id: completing_survey.id, answers: { question_1.id => "Arek, twice a week", question_2.id => "#{Date.today}", question_3.id => "hybrid", question_4.id => "The freedom, fun and fitness aspects", question_5.id => "#{Date.yesterday}", question_6.id => "more than 20 miles", question_7.id => "yes" } }
+    post :run_questionnaire, params: { completing_survey_id: completing_survey.id, answers: { question_1.id => "Arek, twice a week", question_2.id => "#{Date.today}", question_3.id => "hybrid" } }
 
     expect(question_1.answers.first.open_ended_question).to eq "Arek, twice a week"
     expect(question_1.page.number).to eq 1
@@ -35,6 +35,9 @@ describe HomeController, type: :controller do
     expect(question_2.page.number).to eq 1
     expect(question_3.answers.first.single_choice_question).to eq "hybrid"
     expect(question_3.page.number).to eq 1
+#porawic na 1 post
+    post :run_questionnaire, params: { completing_survey_id: completing_survey.id, answers: { question_4.id => "The freedom, fun and fitness aspects", question_5.id => "#{Date.yesterday}", question_6.id => "more than 20 miles", question_7.id => "yes" } }
+
     expect(question_4.answers.first.open_ended_question).to eq "The freedom, fun and fitness aspects"
     expect(question_4.page.number).to eq 2
     expect(question_5.answers.first.date_selection).to eq Date.yesterday
