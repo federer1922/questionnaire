@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 
   root to: "home#run_questionnaire"
 
-  #post
+  post '/run_questionnaire', to: 'home#run_questionnaire'
 
 end

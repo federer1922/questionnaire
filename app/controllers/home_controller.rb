@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def run_questionnaire
+    
 
     if params["questionnaire_id"]
       questionnaire = Questionnaire.find params["questionnaire_id"]

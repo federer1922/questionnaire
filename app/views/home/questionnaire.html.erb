@@ -1,4 +1,6 @@
 <div class="container">
+  <form action="/run_questionnaire" method=post>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%  @pages.each do |page| %>
     <% page.questions.each do |question| %>
       <div class="row">
@@ -11,15 +13,15 @@
         page <%= page.number %>
         </div>
         <div class="w-100"></div>
-        <div class="col-md">
-          <form action="/run_questionnaire" >
+        <div class="col-md">       
             <label for="answers"> </label><br>
-            <input type="text" class="form-control" name="answers" placeholder="Type your answer">
-            <button type="submit" class="btn btn-info">Submit</button>
-          </form>
+            <input type="text" class="form-control" name="answers[<%= question.id %>]" placeholder="Type your answer">      
         </div>   
       </div>
     <% end %>
   <% end %>
+  <p></p>
+  <button type="submit" class="btn btn-info">Submit</button>
+  </form>
 
 </div>
