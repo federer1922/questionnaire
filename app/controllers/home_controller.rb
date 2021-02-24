@@ -4,15 +4,14 @@ class HomeController < ApplicationController
 
     if params["questionnaire_id"]
       questionnaire = Questionnaire.find params["questionnaire_id"]
-      completing_survey = CompletingSurvey.new
-      completing_survey.questionnaire = questionnaire
-      completing_survey.save!
+      @completing_survey = CompletingSurvey.new
+      @completing_survey.questionnaire = questionnaire
+      @completing_survey.save!
 
       @pages = questionnaire.pages.to_a
       render "questionnaire"
     elsif params["completing_survey_id"]
       completing_survey = CompletingSurvey.find params["completing_survey_id"]
-
       params["answers"].each do |question_id, given_answer|
         question = Question.find question_id
         if question.kind == "open_ended"
@@ -35,13 +34,14 @@ class HomeController < ApplicationController
           answer.save!
         end
       end
+     
       render "thank_you"
     
     else
       questionnaire = Questionnaire.first
-      completing_survey = CompletingSurvey.new
-      completing_survey.questionnaire = questionnaire
-      completing_survey.save!
+      @completing_survey = CompletingSurvey.new
+      @completing_survey.questionnaire = questionnaire
+      @completing_survey.save!
 
       @pages = questionnaire.pages.to_a
       render "questionnaire" 
