@@ -1,1 +1,27 @@
-Thank You
+<div class="container">
+  <div class="row">
+    <div class="col-md-auto">
+    <p></p>
+    <p class="font-weight-bold">Thank You for completing the survey. Summary below:</p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <% @answers.each do |answer| %>
+    <div class="row"> 
+      <div class="col-md-auto">
+         <%= answer.question.content %>
+      </div>
+      <div class="w-100"></div>
+      <div class="col-md-auto">
+      <% if answer.question.kind == "open_ended" %>  
+        <p class="font-weight-bold"><%= answer.open_ended_question %></p>
+      <% elsif answer.question.kind == "single_choice" %>
+        <p class="font-weight-bold"><%= answer.single_choice_question %></p>
+      <% elsif answer.question.kind == "date" %>
+        <p class="font-weight-bold"><%= answer.date_selection %></p>   
+      <% end %> 
+      </div>  
+    </div>
+  <% end %>
+</div>

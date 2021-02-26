@@ -12,6 +12,7 @@ class HomeController < ApplicationController
       render "questionnaire"
     elsif params["completing_survey_id"]
       completing_survey = CompletingSurvey.find params["completing_survey_id"]
+      @answers = []
       params["answers"].each do |question_id, given_answer|
         question = Question.find question_id
         if question.kind == "open_ended"
@@ -20,21 +21,24 @@ class HomeController < ApplicationController
           answer.question = question
           answer.open_ended_question = given_answer
           answer.save!
+          @answers << answer
         elsif question.kind == "date"
           answer = Answer.new
           answer.completing_survey = completing_survey
           answer.question = question
           answer.date_selection = given_answer
           answer.save!
+          @answers << answer
         elsif question.kind == "single_choice"
           answer = Answer.new
           answer.completing_survey = completing_survey
           answer.question = question
           answer.single_choice_question = given_answer
           answer.save!
+          @answers << answer
         end
       end
-     
+      
       render "thank_you"
     
     else
