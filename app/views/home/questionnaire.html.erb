@@ -3,15 +3,12 @@
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <input type="hidden" name="completing_survey_id" value="<%= @completing_survey.id %>">
   <%  @pages.each do |page| %>
+   
     <% page.questions.each do |question| %>
       <div class="row">
         <div class="col-md-auto">
         <p></p>
           <%= question.content %>
-        </div>
-        <div class="col-md-auto">
-        <p></p>
-        page <%= page.number %>
         </div>
         <div class="w-100"></div>
         <div class="col-md"> 
@@ -26,8 +23,18 @@
           <input type="date" class="form-control" name="answers[<%= question.id %>]">   
           <% end %> 
         </div>   
+      </div>  
+    <% end %>
+    <p></p>
+    <div class="row"> 
+      <div class="col-lg-12 mx-auto">
+        <div class="mb-0">      
+          <p style="text-align:right;"><%= page.number %></p>
+          <!-- Solid divider -->
+          <hr style="height:2px;border-width:0;background-color:grey">
+        </div>
       </div>
-    <% end %> 
+    </div>
   <% end %>
   <p></p>
   <button type="submit" class="btn btn-info">Submit</button>
