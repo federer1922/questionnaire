@@ -15,7 +15,7 @@
           <input type="text" class="form-control" name="answers[<%= question.id %>]" placeholder="Type your answer">   
           <% elsif question.kind == "single_choice" %>
           <select class="custom-select" name="answers[<%= question.id %>]">
-          <option selected>Choose one</option>
+          <option selected>Select an option</option>
             <%= options_for_select(question.select_possible_answers.split(",")) %>
           </select>
           <% elsif question.kind == "date" %>

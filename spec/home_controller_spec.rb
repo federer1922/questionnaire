@@ -28,17 +28,17 @@ describe HomeController, type: :controller do
     
     post :run_questionnaire, params: { completing_survey_id: completing_survey.id, answers: { question_1.id => "Arek, twice a week", question_2.id => "#{Date.today}", question_3.id => "hybrid",question_4.id => "The freedom, fun and fitness aspects", question_5.id => "#{Date.yesterday}", question_6.id => "more than 20 miles" } }
 
-    expect(question_1.answers.first.open_ended_question).to eq "Arek, twice a week"
+    expect(question_1.answers.first.open_answer).to eq "Arek, twice a week"
     expect(question_1.page.number).to eq 1
-    expect(question_2.answers.first.date_selection).to eq Date.today
+    expect(question_2.answers.first.date).to eq Date.today
     expect(question_2.page.number).to eq 1
-    expect(question_3.answers.first.single_choice_question).to eq "hybrid"
+    expect(question_3.answers.first.single_answer).to eq "hybrid"
     expect(question_3.page.number).to eq 1
-    expect(question_4.answers.first.open_ended_question).to eq "The freedom, fun and fitness aspects"
+    expect(question_4.answers.first.open_answer).to eq "The freedom, fun and fitness aspects"
     expect(question_4.page.number).to eq 2
-    expect(question_5.answers.first.date_selection).to eq Date.yesterday
+    expect(question_5.answers.first.date).to eq Date.yesterday
     expect(question_5.page.number).to eq 2
-    expect(question_6.answers.first.single_choice_question).to eq "more than 20 miles" 
+    expect(question_6.answers.first.single_answer).to eq "more than 20 miles" 
     expect(question_6.page.number).to eq 2
   end
 end

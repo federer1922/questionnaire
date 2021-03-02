@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_022737) do
+ActiveRecord::Schema.define(version: 2021_03_02_174227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.text "open_ended_question"
-    t.string "single_choice_question"
+    t.text "open_answer"
+    t.string "single_answer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "question_id"
     t.bigint "completing_survey_id"
-    t.date "date_selection"
+    t.date "date"
     t.index ["completing_survey_id"], name: "index_answers_on_completing_survey_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
