@@ -11,35 +11,53 @@ class HomeController < ApplicationController
       @pages = questionnaire.pages.to_a
       render "questionnaire"
     elsif params["completing_survey_id"]
-      completing_survey = CompletingSurvey.find params["completing_survey_id"]
+      @completing_survey = CompletingSurvey.find params["completing_survey_id"]
       @answers = []
+      @errors = [] 
       params["answers"].each do |question_id, given_answer|
         question = Question.find question_id
         if question.kind == "open_ended"
           answer = Answer.new
-          answer.completing_survey = completing_survey
+          answer.completing_survey = @completing_survey
           answer.question = question
           answer.open_ended_question = given_answer
-          answer.save!
-          @answers << answer
+          if answer.save
+            @answers << answer
+          else
+            @errors << answer.errors.full_messages.first
+          end
         elsif question.kind == "date"
           answer = Answer.new
-          answer.completing_survey = completing_survey
+          answer.completing_survey = @completing_survey
           answer.question = question
           answer.date_selection = given_answer
-          answer.save!
-          @answers << answer
+          if answer.save
+            @answers << answer
+          else
+            @errors << answer.errors.full_messages.first
+          end
         elsif question.kind == "single_choice"
           answer = Answer.new
-          answer.completing_survey = completing_survey
+          answer.completing_survey = @completing_survey
           answer.question = question
           answer.single_choice_question = given_answer
-          answer.save!
-          @answers << answer
+          if answer.save
+            @answers << answer
+          else
+            @errors << answer.errors.full_messages.first
+          end
         end
+      end 
+
+      if @errors.empty?
+        render "thank_you"
+      else
+        flash[:alert] = @errors.first
+        @pages = @completing_survey.questionnaire.pages.to_a
+        render "questionnaire"
       end
-      
-      render "thank_you"
+
+
     
     else
       questionnaire = Questionnaire.first

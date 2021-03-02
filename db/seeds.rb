@@ -10,15 +10,15 @@ return if Questionnaire.first
 questionnaire_1 = Questionnaire.create!(name: "Bikes")
 
 page_1 = Page.create!(number: 1, questionnaire: questionnaire_1)
-question_1 = Question.create!(kind: "open_ended", content: "What is your name and how often do you cycle?", page: page_1)
-question_2 = Question.create!(kind: "date", content: "What is your date of birth?", page: page_1)
-question_3 = Question.create!(kind: "single_choice", content: "What kind of bike do you prefer?", select_possible_answers: "road,mountain,hybrid,different", page: page_1)
+question_1 = Question.create!(kind: "open_ended", content: "What is your name and how often do you cycle?", page: page_1, requiring_answer: "yes")
+question_2 = Question.create!(kind: "date", content: "What is your date of birth?", page: page_1, requiring_answer: "yes")
+question_3 = Question.create!(kind: "single_choice", content: "What kind of bike do you prefer?", select_possible_answers: "road,mountain,hybrid,different", page: page_1, requiring_answer: "yes")
 
 
 page_2 = Page.create!(number: 2, questionnaire: questionnaire_1)
-question_4 = Question.create!(kind: "open_ended", content: "What do you like about cycling?", page: page_2)
-question_5 = Question.create!(kind: "date", content: "When was the last time you went for a bike ride?", page: page_2)
-question_6 = Question.create!(kind: "single_choice", content: "How long are yours bike rides?", select_possible_answers: "less than 10 miles,around 20 miles,more than 20 miles", page: page_2)
+question_4 = Question.create!(kind: "open_ended", content: "What do you like about cycling?", page: page_2, requiring_answer: "yes")
+question_5 = Question.create!(kind: "date", content: "When was the last time you went for a bike ride?", page: page_2, requiring_answer: "yes")
+question_6 = Question.create!(kind: "single_choice", content: "How long are yours bike rides?", select_possible_answers: "less than 10 miles,around 20 miles,more than 20 miles", page: page_2, requiring_answer: "yes")
 
 questionnaire_2 = Questionnaire.create!(name: "Computers")
 

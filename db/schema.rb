@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_13_155407) do
+ActiveRecord::Schema.define(version: 2021_03_02_022737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_02_13_155407) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "page_id"
     t.string "select_possible_answers"
+    t.string "requiring_answer"
     t.index ["page_id"], name: "index_questions_on_page_id"
   end
 
