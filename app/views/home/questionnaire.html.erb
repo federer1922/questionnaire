@@ -3,26 +3,26 @@
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <input type="hidden" name="completing_survey_id" value="<%= @completing_survey.id %>">
   <%  @pages.each do |page| %>
-   
     <% page.questions.each do |question| %>
       <div class="row">
         <div class="col-md">
-          <%= question.content %>
+          <b><%= question.number %>. <%= question.content %></b>
         </div>
         <div class="w-100"></div>
         <div class="col-md"> 
           <% if question.kind == "open_ended" %>  
-          <input type="text" class="form-control" name="answers[<%= question.id %>]" placeholder="Type your answer">   
+          <input type="text" class="form-control" name="answers[<%= question.id %>]" placeholder="Type your answer ...">   
           <% elsif question.kind == "single_choice" %>
           <select class="custom-select" name="answers[<%= question.id %>]">
-          <option selected>Select an option</option>
+          <option selected>Select an option ...</option>
             <%= options_for_select(question.select_possible_answers.split(",")) %>
           </select>
           <% elsif question.kind == "date" %>
           <input type="date" class="form-control" name="answers[<%= question.id %>]">   
           <% end %> 
+          <p><p/>
         </div>   
-      </div>  
+      </div> 
     <% end %>
     <p></p>
     <div class="row"> 
@@ -36,6 +36,6 @@
     </div>
   <% end %>
   <p></p>
-  <button type="submit" class="btn btn-info">Submit</button>
+  <button type="submit" style="float: right;" class="btn btn-primary">Submit</button>
   </form> 
 </div>

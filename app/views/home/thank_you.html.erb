@@ -10,16 +10,16 @@
   <% @answers.each do |answer| %>
     <div class="row"> 
       <div class="col-md-auto">
-         <%= answer.question.content %>
+        <%= answer.question.number %>. <%= answer.question.content %>
       </div>
       <div class="w-100"></div>
       <div class="col-md-auto">
       <% if answer.question.kind == "open_ended" %>  
-        <p class="font-weight-bold"><%= answer.open_answer %></p>
+        <p><%= answer.open_answer %></p>
       <% elsif answer.question.kind == "single_choice" %>
-        <p class="font-weight-bold"><%= answer.single_answer %></p>
+        <p><%= answer.single_answer %></p>
       <% elsif answer.question.kind == "date" %>
-        <p class="font-weight-bold"><%= answer.date %></p>   
+        <p><%= answer.date %></p>   
       <% end %> 
       </div>  
     </div>

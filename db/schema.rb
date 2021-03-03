@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_174227) do
+ActiveRecord::Schema.define(version: 2021_03_02_185338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_174227) do
     t.bigint "page_id"
     t.string "select_possible_answers"
     t.string "requiring_answer"
+    t.integer "number"
     t.index ["page_id"], name: "index_questions_on_page_id"
   end
 
