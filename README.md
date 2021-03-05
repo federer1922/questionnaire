@@ -14,6 +14,8 @@ rake db:migrate
 
 rails db:seed
 
+rails s
+
 # Spec
 
 rspec
